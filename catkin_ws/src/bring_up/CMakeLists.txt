@@ -203,3 +203,11 @@ include_directories(
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
+
+###############################
+##Publisher&Subscriber Python##
+###############################
+
+catkin_install_python(PROGRAMS scripts/girador.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
