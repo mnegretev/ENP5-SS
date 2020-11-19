@@ -5,7 +5,7 @@ from geometry_msgs.msg import Twist
 app = Flask(__name__)
 
 index_html=open("index.html","r").read()
-threading.Thread(target=lambda: rospy.init_node('my_web_node', disable_signals=True)).start()
+threading.Thread(target=lambda: rospy.init_node('web_node', disable_signals=True)).start()
 pub_cmd_vel = rospy.Publisher("/cmd_vel", Twist, queue_size=1)
 
 @app.route('/')
