@@ -12,7 +12,7 @@ def girador():
 
  	while not rospy.is_shutdown():
  		cmd_vel = Twist()
- 		cmd_vel.angular.z = 0.5
+ 		cmd_vel.linear.x = -0.5
  		pub.publish(cmd_vel) 
  		loop.sleep()
 

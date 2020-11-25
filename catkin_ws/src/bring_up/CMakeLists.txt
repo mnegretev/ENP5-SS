@@ -208,6 +208,6 @@ include_directories(
 ##Publisher&Subscriber Python##
 ###############################
 
-catkin_install_python(PROGRAMS scripts/girador.py
+catkin_install_python(PROGRAMS scripts/avanzador.py scripts/retrocededor.py scripts/giradorDer.py scripts/girador.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
