@@ -29,10 +29,9 @@
     
     <!--Script funcional-->
     <script>
-<<<<<<< HEAD
-    	var Url = null;
-    	var HttpClient = function() {
-    	this.get = function(Url, Callback) {
+      var Url = null;
+      var HttpClient = function() {
+      this.get = function(Url, Callback) {
         var HttpRequest = new XMLHttpRequest();
         HttpRequest.onreadystatechange = function() { 
             if (HttpRequest.readyState == 4 && HttpRequest.status == 200)
@@ -43,40 +42,13 @@
         HttpRequest.send( null );
     }
 }
-||||||| merged common ancestors
-=======
-      var Url = null;
-      var HttpClient = function() {
-        this.get = function(Url, Callback) {
-          var HttpRequest = new XMLHttpRequest();
-          HttpRequest.onreadystatechange = function() { 
-            if (HttpRequest.readyState == 4 && HttpRequest.status == 200)
-              Callback(anHttpRequest.responseText);
-          }
-        HttpRequest.open( "GET", Url, true );            
-        HttpRequest.send( null );
-        }   
-      }
->>>>>>> a5de6ed82926a6d81f5e5d7fac416a95fa55b4a7
       function functionUp(){
-<<<<<<< HEAD
-        Url = './up';
-        var btnUp = new HttpClient();
-		btnUp.get(Url, function(response) {
-    	
-		});
-      	}
-||||||| merged common ancestors
-        window.location="./up";
-      }
-=======
         Url = './up';    
         var btnUp = new HttpClient();
         btnUp.get(Url, function(response) {
         });
         alert("Presionaste Arriba");
       }
->>>>>>> a5de6ed82926a6d81f5e5d7fac416a95fa55b4a7
 
       function functionLeft() {
         Url = './left';    
