@@ -29,9 +29,26 @@
     
     <!--Script funcional-->
     <script>
+    	var Url = null;
+    	var HttpClient = function() {
+    	this.get = function(Url, Callback) {
+        var HttpRequest = new XMLHttpRequest();
+        HttpRequest.onreadystatechange = function() { 
+            if (HttpRequest.readyState == 4 && HttpRequest.status == 200)
+                Callback(HttpRequest.responseText);
+        }
+
+        HttpRequest.open( "GET", Url, true );            
+        HttpRequest.send( null );
+    }
+}
       function functionUp(){
-        window.location="./up";
-      }
+        Url = './up';
+        var btnUp = new HttpClient();
+		btnUp.get(Url, function(response) {
+    	
+		});
+      	}
 
       function functionLeft() {
         window.location="./left";
