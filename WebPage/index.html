@@ -29,20 +29,48 @@
     
     <!--Script funcional-->
     <script>
+      var Url = null;
+      var HttpClient = function() {
+        this.get = function(Url, Callback) {
+          var HttpRequest = new XMLHttpRequest();
+          HttpRequest.onreadystatechange = function() { 
+            if (HttpRequest.readyState == 4 && HttpRequest.status == 200)
+              Callback(anHttpRequest.responseText);
+          }
+        HttpRequest.open( "GET", Url, true );            
+        HttpRequest.send( null );
+        }   
+      }
       function functionUp(){
-        window.location="./up";
+        Url = './up';    
+        var btnUp = new HttpClient();
+        btnUp.get(Url, function(response) {
+        });
+        alert("Presionaste Arriba");
       }
 
       function functionLeft() {
-        window.location="./left";
+        Url = './left';    
+        var btnUp = new HttpClient();
+        btnUp.get(Url, function(response) {
+        });
+        alert("Presionaste Izquierda");
       }
 
       function functionDown() {
-        window.location="./down";
+        Url = './down';    
+        var btnUp = new HttpClient();
+        btnUp.get(Url, function(response) {
+        });
+        alert("Presionaste Abajo");
       }
 
       function functionRight() {
-        window.location="./right";
+        Url = './right';    
+        var btnUp = new HttpClient();
+        btnUp.get(Url, function(response) { 
+        });
+        alert("Presionaste Derecha");
       }
     </script>
 
