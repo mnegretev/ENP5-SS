@@ -8,12 +8,15 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+    <title>Centro de Control</title>
   </head>
   <body>
-
-    <!-- boton nuestro -->
-    <h1 id="demo">Hello, world!</h1>
+    <!-- Texto -->
+    <h1 align="center" class="text-white">Welcome to Control</h1>
+    <br>
+    <h3 class="text-white">Press a button to move the robot!</h3>
+    <br>
+    <!-- Botonotes -->
     <div class="buttons" align="center">
     <div class="btn-group" role="group" aria-label="Basic example">
         <button type="button" class="btn btn-warning" onclick="functionUp()">Up</button>
@@ -26,7 +29,11 @@
     
     </div>
     </div>
-    
+    <br>
+    <div class="text-center">
+      <img src="" class="rounded">
+    </div>
+
     <!--Script funcional-->
     <script>
       var Url = null;
@@ -40,14 +47,14 @@
 
         HttpRequest.open( "GET", Url, true );            
         HttpRequest.send( null );
-    }
-}
+        }
+      }
       function functionUp(){
         Url = './up';    
         var btnUp = new HttpClient();
         btnUp.get(Url, function(response) {
         });
-        alert("Presionaste Arriba");
+        alert("You pressed Up");
       }
 
       function functionLeft() {
@@ -55,7 +62,7 @@
         var btnUp = new HttpClient();
         btnUp.get(Url, function(response) {
         });
-        alert("Presionaste Izquierda");
+        alert("You preessed Left");
       }
 
       function functionDown() {
@@ -63,7 +70,7 @@
         var btnUp = new HttpClient();
         btnUp.get(Url, function(response) {
         });
-        alert("Presionaste Abajo");
+        alert("You pressed Down");
       }
 
       function functionRight() {
@@ -71,7 +78,7 @@
         var btnUp = new HttpClient();
         btnUp.get(Url, function(response) { 
         });
-        alert("Presionaste Derecha");
+        alert("You pressed Right");
       }
     </script>
 
@@ -80,5 +87,20 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <style type="text/css">
+      body{
+        background: url("https://image.freepik.com/vector-gratis/fondo-tecnologia-placa-circuito-sistema-conexion-datos-digitales-alta-tecnologia-computadora-electronica_29971-475.jpg") no-repeat fixed center center #15154b;
+        background-size: cover;
+      }
+      h1{
+        font-family: 'Copperplate';
+      }
+      h3{
+        font-family: 'Copperplate';
+      }
+      .btn-group{
+        font-family: 'monaco','Courier New', Courier, monospace;
+      }
+    </style>
   </body>
 </html>
