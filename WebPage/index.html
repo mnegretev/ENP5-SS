@@ -30,9 +30,10 @@
     </div>
     </div>
     <br>
+    <!-- posible error, imagen png 
     <div class="text-center">
       <img src="" class="rounded">
-    </div>
+    </div> --> 
 
     <!--Script funcional-->
     <script>
@@ -54,32 +55,27 @@
         var btnUp = new HttpClient();
         btnUp.get(Url, function(response) {
         });
-        alert("You pressed Up");
       }
 
       function functionLeft() {
         Url = './left';    
-        var btnUp = new HttpClient();
-        btnUp.get(Url, function(response) {
+        var btnLeft = new HttpClient();
+        btnLeft.get(Url, function(response) {
         });
-        alert("You preessed Left");
       }
 
       function functionDown() {
         Url = './down';    
-        var btnUp = new HttpClient();
-        btnUp.get(Url, function(response) {
+        var btnDown = new HttpClient();
+        btnDown.get(Url, function(response) {
         });
-        alert("You pressed Down");
       }
 
       function functionRight() {
         Url = './right';    
-        var btnUp = new HttpClient();
-        btnUp.get(Url, function(response) { 
-        });
-        alert("You pressed Right");
-      }
+        var btnRight = new HttpClient();
+        btnRight.get(Url, function(response) { 
+        });      }
     </script>
 
     <!-- Optional JavaScript -->
