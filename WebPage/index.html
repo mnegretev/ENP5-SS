@@ -19,7 +19,7 @@
     <!-- Botonotes -->
     <div class="buttons" align="center">
     <div class="btn-group" role="group" aria-label="Basic example">
-        <button type="button" class="btn btn-warning" onclick="functionUp()">Up</button>
+        <button type="button" class="btn btn-warning" onclick="btnUp('./up')">Up</button>
     </div>
     <br>
     <div class="btn-group" role="group" aria-label="Basic example">
@@ -37,19 +37,16 @@
 
     <!--Script funcional-->
     <script>
-      
-      var HttpClient = function() {
-      this.get = function(Url, Callback) {
+      function btnUp (Url, Callback) {
         var HttpRequest = new XMLHttpRequest();
         HttpRequest.onreadystatechange = function() { 
             if (HttpRequest.readyState == 4 && HttpRequest.status == 200)
                 Callback(HttpRequest.responseText);
         }
-
-        HttpRequest.open( "GET", Url, true );            
+        HttpRequest.open( "GET", './up', true );            
         HttpRequest.send( null );
         }
-      }
+      /*
       function functionUp(){
         Url = './up';    
         var btnUp = new HttpClient();
@@ -76,7 +73,7 @@
         var btnRight = new HttpClient();
         btnRight.get(Url, function(response) { 
         });      
-      }
+      }*/
     </script>
 
     <!-- Optional JavaScript -->
