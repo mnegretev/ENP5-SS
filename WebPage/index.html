@@ -19,13 +19,13 @@
     <!-- Botonotes -->
     <div class="buttons" align="center">
     <div class="btn-group" role="group" aria-label="Basic example">
-        <button type="button" class="btn btn-warning" onclick="btnUp('./up')">Up</button>
+        <button type="button" class="btn btn-warning" onclick="httpRequest('./up')">Up</button>
     </div>
     <br>
     <div class="btn-group" role="group" aria-label="Basic example">
-        <button type="button" class="btn btn-primary" onclick="functionLeft()">Left</button>
-        <button type="button" class="btn btn-success" onclick="functionDown()">Down</button>
-        <button type="button" class="btn btn-danger" onclick="functionRight()">Right</button>
+        <button type="button" class="btn btn-primary" onclick="httpRequest('./left')">Left</button>
+        <button type="button" class="btn btn-success" onclick="httpRequest('./down')">Down</button>
+        <button type="button" class="btn btn-danger" onclick="httpRequest('./right')">Right</button>
     
     </div>
     </div>
@@ -37,43 +37,15 @@
 
     <!--Script funcional-->
     <script>
-      function btnUp (Url, Callback) {
+      function httpRequest (Url, Callback) {
         var HttpRequest = new XMLHttpRequest();
         HttpRequest.onreadystatechange = function() { 
             if (HttpRequest.readyState == 4 && HttpRequest.status == 200)
                 Callback(HttpRequest.responseText);
         }
-        HttpRequest.open( "GET", './up', true );            
+        HttpRequest.open( "GET", Url, true );            
         HttpRequest.send( null );
         }
-      /*
-      function functionUp(){
-        Url = './up';    
-        var btnUp = new HttpClient();
-        btnUp.get(Url, function(response) {
-        });
-      }
-
-      function functionLeft() {
-        Url = './left';    
-        var btnLeft = new HttpClient();
-        btnLeft.get(Url, function(response) {
-        });
-      }
-
-      function functionDown() {
-        Url = './down';    
-        var btnDown = new HttpClient();
-        btnDown.get(Url, function(response) {
-        });
-      }
-
-      function functionRight() {
-        Url = './right';    
-        var btnRight = new HttpClient();
-        btnRight.get(Url, function(response) { 
-        });      
-      }*/
     </script>
 
     <!-- Optional JavaScript -->
@@ -81,7 +53,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-    <!--
+    
     <style type="text/css">
       body{
         background: url("https://image.freepik.com/vector-gratis/fondo-tecnologia-placa-circuito-sistema-conexion-datos-digitales-alta-tecnologia-computadora-electronica_29971-475.jpg") no-repeat fixed center center #15154b;
@@ -97,6 +69,6 @@
         font-family: 'monaco','Courier New', Courier, monospace;
       }
     </style>
-    -->
+    
   </body>
 </html>
