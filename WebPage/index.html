@@ -30,10 +30,14 @@
     </div>
     </div>
     <br>
-    <!-- posible error, imagen png 
-    <div class="text-center">
-      <img src="" class="rounded">
-    </div> --> 
+    <div class="container">
+      <div class="row">
+          <div class="col-lg-8  offset-lg-2">
+              <h3 class="mt-5" align="center" class="text-white">Live Streaming</h3>
+              <img src="{{ url_for('video_feed') }}" width="70%">
+          </div>
+      </div>
+    </div>
 
     <!--Script funcional-->
     <script>

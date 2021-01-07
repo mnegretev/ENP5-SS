@@ -1,4 +1,5 @@
-from flask import Flask
+from flask import Flask, render_template, Response
+import cv2
 import rospy
 import threading
 from geometry_msgs.msg import Twist
@@ -8,9 +9,25 @@ index_html=open("index.html","r").read()
 threading.Thread(target=lambda: rospy.init_node('web_node', disable_signals=True)).start()
 pub_cmd_vel = rospy.Publisher("/cmd_vel", Twist, queue_size=1)
 
+camera = cv2.VideoCapture(0)
+def gen_frames():  
+    while True:
+        success, frame = camera.read()  # lee el marco de la cámara
+        if not success:
+            break
+        else:
+            ret, buffer = cv2.imencode('.jpg', frame)
+            frame = buffer.tobytes()
+            yield (b'--frame\r\n'
+                   b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n') # concat frame uno por uno y muestra el resultado
+
 @app.route('/')
-def hello_world():
-    return index_html
+def index():
+    return render_template('index.html')
+
+@app.route('/video_feed')
+def video_feed():
+    return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 @app.route('/left')
 def move_left():
