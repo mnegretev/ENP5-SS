@@ -1,5 +1,6 @@
-from flask import Flask, render_template, Response
-import cv2
+from flask import Flask
+''', render_template, Response'''
+'''import cv2'''
 import rospy
 import threading
 from geometry_msgs.msg import Twist
@@ -9,6 +10,7 @@ index_html=open("index.html","r").read()
 threading.Thread(target=lambda: rospy.init_node('web_node', disable_signals=True)).start()
 pub_cmd_vel = rospy.Publisher("/cmd_vel", Twist, queue_size=1)
 
+'''
 camera = cv2.VideoCapture(0)
 def gen_frames():  
     while True:
@@ -28,6 +30,10 @@ def index():
 @app.route('/video_feed')
 def video_feed():
     return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
+'''
+@app.route('/')
+def index():
+    return index_html
 
 @app.route('/left')
 def move_left():
@@ -54,6 +60,14 @@ def move_up():
 def move_down():
     cmd_vel = Twist()
     cmd_vel.linear.x = -0.5
+    pub_cmd_vel.publish(cmd_vel)
+    return "Moving robot forward"
+
+@app.route('/stop')
+def not_move():
+    cmd_vel = Twist()
+    cmd_vel.linear.x = 0.0
+    cmd_vel.angular.z = 0.0
     pub_cmd_vel.publish(cmd_vel)
     return "Moving robot forward"
 

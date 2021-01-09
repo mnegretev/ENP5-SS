@@ -26,14 +26,17 @@
         <button type="button" class="btn btn-primary" onclick="httpRequest('./left')">Left</button>
         <button type="button" class="btn btn-success" onclick="httpRequest('./down')">Down</button>
         <button type="button" class="btn btn-danger" onclick="httpRequest('./right')">Right</button>
-    
+    </div>
+    <br>
+    <div class="btn-group" role="group" aria-label="Basic example">
+      <button type="button" class="btn btn-warning" onclick="httpRequest('./stop')">Stop</button>
     </div>
     </div>
     <br>
     <div class="container">
       <div class="row">
           <div class="col-lg-8  offset-lg-2">
-              <h3 class="mt-5" align="center" class="text-white">Live Streaming</h3>
+              <h3 class="text-white" class="mt-5" align="center">Live Streaming</h3>
               <img src="{{ url_for('video_feed') }}" width="70%">
           </div>
       </div>
