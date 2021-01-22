@@ -7,12 +7,12 @@ from geometry_msgs.msg import Twist
 
 app = Flask(__name__)
 
-index_html=open("index.html","r").read()
+'''index_html=open("index.html","r").read()'''
 threading.Thread(target=lambda: rospy.init_node('web_node', disable_signals=True)).start()
 pub_cmd_vel = rospy.Publisher("/cmd_vel", Twist, queue_size=1)
 
 camera = cv2.VideoCapture(0) #webcamara
-'''def gen_frames():  
+def gen_frames(): 
     while True:
         success, frame = camera.read()  # lee el marco de la cámara
         if not success:
@@ -21,7 +21,7 @@ camera = cv2.VideoCapture(0) #webcamara
             ret, buffer = cv2.imencode('.jpg', frame)
             frame = buffer.tobytes()
             yield (b'--frame\r\n'
-                   b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n') # concat frame uno por uno y muestra el resultado
+                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n') # concat frame uno por uno y muestra el resultado
 
 @app.route('/video_feed')
 def video_feed():
@@ -29,12 +29,13 @@ def video_feed():
 
 @app.route('/')
 def index():
-return render_template('index.html')
+    return render_template ('index.html')
+
 '''
 @app.route('/')
 def index():
-return index_html
-
+    return index_html
+'''
 @app.route('/left')
 def move_left():
     cmd_vel = Twist()
