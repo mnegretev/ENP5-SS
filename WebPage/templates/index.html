@@ -19,17 +19,18 @@
     <!-- Botonotes -->
     <div class="buttons" align="center">
     <div class="btn-group" role="group" aria-label="Basic example">
-        <button type="button" class="btn btn-warning" onclick="httpRequest('./up')">Up</button>
+        <button type="button" class="btn btn-warning btnWidth" style="width: 20%; height: 8%;" onclick="httpRequest('./up')">Up</button>
     </div>
     <br>
     <div class="btn-group" role="group" aria-label="Basic example">
-        <button type="button" class="btn btn-primary" onclick="httpRequest('./left')">Left</button>
-        <button type="button" class="btn btn-success" onclick="httpRequest('./down')">Down</button>
-        <button type="button" class="btn btn-danger" onclick="httpRequest('./right')">Right</button>
+        <button type="button" class="btn btn-primary btnWidth" style="width: 12%; height: 8%;" onclick="httpRequest('./left')">Left</button>
+        <button type="button" class="btn btn-success btnWidth" style="width: 12%; height: 8%;" onclick="httpRequest('./stop')">Stop</button>
+        <button type="button" class="btn btn-danger btnWidth" style="width: 12%; height: 8%;" onclick="httpRequest('./right')">Right</button>
+
     </div>
     <br>
     <div class="btn-group" role="group" aria-label="Basic example">
-      <button type="button" class="btn btn-warning" onclick="httpRequest('./stop')">Stop</button>
+    	<button type="button" class="btn btn-warning btnWidth" style="width: 12%; height: 8%;" onclick="httpRequest('./down')">Down</button>
     </div>
     </div>
     <br>
@@ -73,7 +74,7 @@
         font-family: 'Copperplate';
       }
       .btn-group{
-        font-family: 'monaco','Courier New', Courier, monospace;
+        font-family: 'monaco','Courier New', Courier, monospace; 
       }
     </style>
     
