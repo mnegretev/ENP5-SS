@@ -11,7 +11,7 @@ app = Flask(__name__)
 threading.Thread(target=lambda: rospy.init_node('web_node', disable_signals=True)).start()
 pub_cmd_vel = rospy.Publisher("/cmd_vel", Twist, queue_size=1)
 
-camera = cv2.VideoCapture(0) #webcamara
+camera = cv2.VideoCapture(-1) #webcamara
 def gen_frames(): 
     while True:
         success, frame = camera.read()  # lee el marco de la cámara
