@@ -4,6 +4,8 @@ import cv2
 import rospy
 import threading
 from geometry_msgs.msg import Twist
+from sensor_msgs.msg import Image
+from cv_bridge import CvBridge, CvBridgeError
 
 app = Flask(__name__)
 
@@ -12,9 +14,11 @@ threading.Thread(target=lambda: rospy.init_node('web_node', disable_signals=True
 pub_cmd_vel = rospy.Publisher("/cmd_vel", Twist, queue_size=1)
 
 camera = cv2.VideoCapture(-1) #webcamara
+bridge = CvBridge()
+cv_image = bridge.imgmsg_to_cv2(image_message, desired_encoding='CV_8UC1')
 def gen_frames(): 
     while True:
-        success, frame = camera.read()  # lee el marco de la cámara
+        success, #frame = camera.read()  # lee el marco de la cámara
         if not success:
             break
         else:
