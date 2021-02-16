@@ -12,10 +12,11 @@ app = Flask(__name__)
 '''index_html=open("index.html","r").read()'''
 threading.Thread(target=lambda: rospy.init_node('web_node', disable_signals=True)).start()
 pub_cmd_vel = rospy.Publisher("/cmd_vel", Twist, queue_size=1)
+image_pub = rospy.Publisher("/camera/color/image_raw", Image, queue_size=1)
 
 camera = cv2.VideoCapture(-1) #webcamara
 bridge = CvBridge()
-cv_image = bridge.imgmsg_to_cv2(image_message, desired_encoding='CV_8UC1')
+cv_image = bridge.imgmsg_to_cv2(camera, desired_encoding='CV_8UC1')
 def gen_frames(): 
     while True:
         success, #frame = camera.read()  # lee el marco de la cámara
