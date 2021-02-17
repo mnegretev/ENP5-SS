@@ -15,11 +15,29 @@ pub_cmd_vel = rospy.Publisher("/cmd_vel", Twist, queue_size=1)
 image_pub = rospy.Publisher("/camera/color/image_raw", Image, queue_size=1)
 
 camera = cv2.VideoCapture(-1) #webcamara
-bridge = CvBridge()
-cv_image = bridge.imgmsg_to_cv2(camera, desired_encoding='CV_8UC1')
+#bridge = CvBridge()
+#cv_image = bridge.imgmsg_to_cv2(camera, desired_encoding='CV_8UC1')
+
 def gen_frames(): 
     while True:
-        success, #frame = camera.read()  # lee el marco de la cámara
+        check, frame = camera.read()
+
+    #6. Converting to grayscale
+        frameGray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+
+    #4. Show the frame
+        cv2.imshow("capturing", frameGray)
+
+    #5. Key to out
+    #cv2.waitKey()
+
+    #7. For playing
+        key=cv2.waitKey(1)
+
+        if key == ord('q'):
+            break
+        '''
+        success, frame = camera.read()  # lee el marco de la cámara
         if not success:
             break
         else:
@@ -27,6 +45,7 @@ def gen_frames():
             frame = buffer.tobytes()
             yield (b'--frame\r\n'
                 b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n') # concat frame uno por uno y muestra el resultado
+        '''
 
 @app.route('/video_feed')
 def video_feed():
