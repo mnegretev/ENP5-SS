@@ -16,43 +16,22 @@ image_pub = rospy.Publisher("/camera/color/image_raw", Image, queue_size=1)
 
 camera = cv2.VideoCapture(-1) #webcamara
 bridge = CvBridge()
-
 def gen_frames(): 
     while True:
-        check, frame = camera.read()
+        success, frame = camera.read()  # lee el marco de la cámara
+        cv_image = bridge.imgmsg_to_cv2(frame, desired_encoding='CV_8UC3')
 
-    # Converting to grayscale
-        frameGray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-
-    # Converting rosmgs to cv-msg
-        cv_image = bridge.imgmsg_to_cv2(frameGray, desired_encoding='passthrough')
-
-    # Show the frame
-        cv2.imshow("capturing", cv_image)
-
-    # Key to out
-    #cv2.waitKey()
-
-    #7. For playing
-        key=cv2.waitKey(1)
-
-        if key == ord('q'):
-            break
-        '''
-        success, frame = camera.read()  # lee el marco de la camara
         if not success:
             break
         else:
-            ret, buffer = cv2.imencode('.jpg', frame)
-            frame = buffer.tobytes()
-            yield (b'--frame\r\n'
-                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n') # concat frame uno por uno y muestra el resultado
-        '''
+            ret, buffer = cv2.imencode('.jpg', cv_image)
+            #cv_image = buffer.tobytes()
+            yield (b'--cv_image\r\n'
+                b'Content-Type: image/jpeg\r\n\r\n' + cv_image + b'\r\n') # concat frame uno por uno y muestra el resultado
 
 @app.route('/video_feed')
 def video_feed():
-    return Response(gen_frames())
-    '''return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')'''
+    return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=cv_image')
 
 @app.route('/')
 def index():
