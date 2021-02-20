@@ -15,20 +15,22 @@ pub_cmd_vel = rospy.Publisher("/cmd_vel", Twist, queue_size=1)
 image_pub = rospy.Publisher("/camera/color/image_raw", Image, queue_size=1)
 
 camera = cv2.VideoCapture(-1) #webcamara
-#bridge = CvBridge()
-#cv_image = bridge.imgmsg_to_cv2(camera, desired_encoding='CV_8UC1')
+bridge = CvBridge()
 
 def gen_frames(): 
     while True:
         check, frame = camera.read()
 
-    #6. Converting to grayscale
+    # Converting to grayscale
         frameGray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
-    #4. Show the frame
-        cv2.imshow("capturing", frameGray)
+    # Converting rosmgs to cv-msg
+        cv_image = bridge.imgmsg_to_cv2(frameGray, desired_encoding='mono8')
 
-    #5. Key to out
+    # Show the frame
+        cv2.imshow("capturing", cv_image)
+
+    # Key to out
     #cv2.waitKey()
 
     #7. For playing
