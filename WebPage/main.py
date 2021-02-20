@@ -25,7 +25,7 @@ def gen_frames():
         frameGray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
     # Converting rosmgs to cv-msg
-        cv_image = bridge.imgmsg_to_cv2(frameGray, desired_encoding='mono8')
+        cv_image = bridge.imgmsg_to_cv2(frameGray, desired_encoding='passthrough')
 
     # Show the frame
         cv2.imshow("capturing", cv_image)
@@ -39,7 +39,7 @@ def gen_frames():
         if key == ord('q'):
             break
         '''
-        success, frame = camera.read()  # lee el marco de la cámara
+        success, frame = camera.read()  # lee el marco de la camara
         if not success:
             break
         else:
@@ -51,7 +51,8 @@ def gen_frames():
 
 @app.route('/video_feed')
 def video_feed():
-    return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
+    return Response(gen_frames())
+    '''return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')'''
 
 @app.route('/')
 def index():
