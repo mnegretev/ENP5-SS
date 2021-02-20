@@ -23,7 +23,7 @@ def gen_frames():
         success, frame = camera.read()  # lee el marco de la camara
         #dtype, n_channels = bridge.encoding_as_cvtype2('8UC3')
         #im = np.ndarray(shape=(480, 640, n_channels), dtype=dtype)
-        cv_image = bridge.imgmsg_to_cv2(frame, desired_encoding='8UC3')
+        cv_image = bridge.imgmsg_to_cv2(frame, desired_encoding="passthrough")
 
         if not success:
             break
