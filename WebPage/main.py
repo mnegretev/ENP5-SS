@@ -20,11 +20,12 @@ bridge = CvBridge()
 
 def gen_frames(): 
     while True:
-        success, frame = camera.read()  # lee el marco de la camara
+        success, image_message = camera.read()  # lee el marco de la camara
         #dtype, n_channels = bridge.encoding_as_cvtype2('8UC3')
         #im = np.ndarray(shape=(480, 640, n_channels), dtype=dtype)
-        cv_image = bridge.imgmsg_to_cv2(frame, desired_encoding="passthrough")
-
+        cv_image = bridge.imgmsg_to_cv2(image_message, desired_encoding="passthrough")
+        cv2.imshow("capture", cv_image)
+        
         if not success:
             break
         else:
@@ -32,6 +33,7 @@ def gen_frames():
             cv_image = buffer.tobytes()
             yield (b'--cv_image\r\n'
                 b'Content-Type: image/jpeg\r\n\r\n' + cv_image + b'\r\n') # concat frame uno por uno y muestra el resultado
+            image_pub.publish(cv_image)
 
 @app.route('/')
 def index():
