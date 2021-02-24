@@ -13,27 +13,23 @@ app = Flask(__name__)
 '''index_html=open("index.html","r").read()'''
 threading.Thread(target=lambda: rospy.init_node('web_node', disable_signals=True)).start()
 pub_cmd_vel = rospy.Publisher("/cmd_vel", Twist, queue_size=1)
-image_pub = rospy.Publisher("/camera/color/image_raw", Image, queue_size=1)
+#image_pub = rospy.Publisher("/camera/color/image_raw", Image, queue_size=1)
 
-camera = cv2.VideoCapture(-1) #webcamara
+#camera = cv2.VideoCapture(-1) #webcamara
 bridge = CvBridge()
+image_sub = rospy.Subscriber("/camera/color/image_raw", Image, gen_frames)
 
-def gen_frames(): 
+def gen_frames(self, callback): 
     while True:
-        success, image_message = camera.read()  # lee el marco de la camara
+        #success, image_message = camera.read()  # lee el marco de la camara
         #dtype, n_channels = bridge.encoding_as_cvtype2('8UC3')
         #im = np.ndarray(shape=(480, 640, n_channels), dtype=dtype)
-        cv_image = bridge.imgmsg_to_cv2(image_message, desired_encoding="passthrough")
-        cv2.imshow("capture", cv_image)
-        
-        if not success:
-            break
-        else:
-            ret, buffer = cv2.imencode('.jpg', cv_image)
-            cv_image = buffer.tobytes()
-            yield (b'--cv_image\r\n'
-                b'Content-Type: image/jpeg\r\n\r\n' + cv_image + b'\r\n') # concat frame uno por uno y muestra el resultado
-            image_pub.publish(cv_image)
+        cv_image = bridge.imgmsg_to_cv2(image_message, 'bgr8')
+        cv2.imshow("Image Window", cv_image)
+        ret, buffer = cv2.imencode('.jpg', cv_image)
+        cv_image = buffer.tobytes()
+        yield (b'--cv_image\r\n'
+            b'Content-Type: image/jpeg\r\n\r\n' + cv_image + b'\r\n') # concat frame uno por uno y muestra el resultado
 
 @app.route('/')
 def index():
