@@ -16,10 +16,11 @@ pub_cmd_vel = rospy.Publisher("/cmd_vel", Twist, queue_size=1)
 #image_pub = rospy.Publisher("/camera/color/image_raw", Image, queue_size=1)
 
 class image_converter:
-    def init(self):
+    def __init__(self):
         #camera = cv2.VideoCapture(-1) #webcamara
         cv_image = rospy.Subscriber("/camera/color/image_raw", Image, self.callback)
         self.bridge = CvBridge()
+        self.image_converter = image_converter
 
     def callback(self, data): 
         while True:
@@ -43,7 +44,6 @@ def index():
 
 @app.route('/video_feed')
 def video_feed():
-    image_converter = image_converter()
     rospy.init_node('image_converter', anonymous=True)
     try:
         rospy.spin()
